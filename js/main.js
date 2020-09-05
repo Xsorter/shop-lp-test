@@ -1,14 +1,39 @@
 (function () {
   "use strict";
-  const productsNodeList = document.querySelectorAll(".js-product");
+  const proructsNode = document.querySelector(".products-box");
+  const cartValue = document.querySelector(".js-value-total");
+  const cartQuantiy = document.querySelector(".js-qty-total");
+  const prices = [];
 
-  productsNodeList.forEach((el) => {
-    const title = el.querySelector(".product-box__title").innerHTML;
-    console.log(el);
-  });
+  const handleCart = () => {
+    console.log(prices);
+  };
 
-  //helpers
-  function sum(elements) {
-    return elements.reduce((a, b) => a + b.value, 0);
-  }
+  //handle separate product box
+  const addToCart = (productBox) => {
+    const price = productBox
+      .querySelector("[data-price]")
+      .getAttribute("data-price");
+
+    const quantity = productBox.querySelector(".js-qty");
+
+    //validation for only positive values
+    if (quantity.value === "" || quantity.value < 1) {
+      quantity.value = 1;
+    }
+
+    prices.push({
+      quantity: +quantity.value,
+      price: +price,
+    });
+
+    handleCart();
+  };
+
+  //get button click with events delegation
+  proructsNode.onclick = () => {
+    const target = event.target;
+    if (!target.classList.contains("js-add")) return;
+    addToCart(target.closest(".js-product"));
+  };
 })();
