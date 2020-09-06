@@ -1,32 +1,59 @@
 (function () {
   "use strict";
-  let totalPrice,
-    totalQuantity = 0;
+  let totalPrice = 0;
+  let totalQuantity = 0;
 
-  const updateCart = () => {
-    document.querySelector(".js-price-total").innerHTML = totalPrice;
-    document.querySelector(".js-qty-total").innerHTML = totalQuantity;
+  const totalPriceElement = document.querySelector(".js-price-total");
+  const totalQuantityElement = document.querySelector(".js-qty-total");
+  const checkoutButton = document.querySelector(".js-check");
+  const popup = document.querySelector(".js-popup");
+
+  const messages = {
+    error: "Пожалуйста, заполните все поля формы",
+    success: "Спасибо за заказ! Мы свяжемся с Вами в ближайшее время",
   };
 
-  const clearCar = () => {};
+  //helpers
+  const show = (el) => {
+    el.hidden = false;
+  };
+
+  const hide = (el) => {
+    el.hidden = true;
+  };
+
+  const updateCart = () => {
+    checkoutButton.disabled = false;
+    totalPriceElement.innerHTML = totalPrice;
+    totalQuantityElement.innerHTML = totalQuantity;
+  };
+
+  //reset card UI to init state
+  const clearCart = () => {
+    totalPriceElement.innerHTML = "XXX";
+    totalQuantityElement.innerHTML = "XXX";
+    checkoutButton.disabled = true;
+    hide(popup);
+  };
 
   //handle single product box
   const addToCart = (productBox) => {
-    const price = productBox.dataset.price;
-    const quantity = productBox.querySelector(".js-qty");
+    const price = +productBox.dataset.price;
+    let quantity = +productBox.querySelector(".js-qty").value;
 
     //validation for only positive values
-    if (quantity.value === "" || quantity.value < 1) {
-      quantity.value = 1;
+    if (quantity === "" || quantity < 1) {
+      quantity = 1;
     }
 
-    totalPrice += quantity.value * price;
-    totalQuantity += +quantity.value;
-    quantity.value = "";
+    totalPrice += quantity * price;
+    totalQuantity += quantity;
+    quantity = 0;
 
     updateCart();
   };
 
+  // product filters logic
   const filterProducts = (categoryFilter = 0, priceFilter = 0) => {
     document.querySelectorAll(".js-product").forEach((el) => {
       const category = +el.dataset.category;
@@ -55,14 +82,29 @@
     });
   };
 
+  //form validation for empty fields
+  const validateForm = (el) => {
+    el.preventDefault();
+    const isInvalid = [];
+    const inputs = el.target.querySelectorAll("input");
+    [...inputs].filter((el) => {
+      isInvalid.push(el.value.trim() === "");
+    });
+
+    if (isInvalid.includes(true)) {
+      alert(messages.error);
+    } else {
+      alert(messages.success);
+      clearCart();
+    }
+  };
+
   //filters change events delegation
   document.querySelector(".js-filters").onchange = () => {
     const target = event.target;
     const categoryFilter = document.querySelector(".js-filter-cat");
     const priceFilter = document.querySelector(".js-filter-price");
-
     if (target.tagName != "SELECT") return;
-
     filterProducts(+categoryFilter.value, +priceFilter.value);
   };
 
@@ -73,12 +115,15 @@
     addToCart(target.closest(".js-product"));
   };
 
-  //helpers
-  function show(el) {
-    el.hidden = false;
-  }
+  document.querySelector(".js-form").addEventListener("submit", validateForm);
+  checkoutButton.addEventListener("click", () => {
+    show(popup);
+  });
 
-  function hide(el) {
-    el.hidden = true;
-  }
+  //hide popup on overlay click
+  document.querySelector(".js-popup").onclick = () => {
+    const target = event.target;
+    if (!target.classList.contains("js-popup")) return;
+    hide(popup);
+  };
 })();

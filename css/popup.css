@@ -1,0 +1,116 @@
+:root {
+  --color-shadow: 12, 13, 18;
+  --color-light: 255, 255, 255;
+  --color-bg: 238, 240, 245, 1;
+  --color-bg-input: 240, 242, 247, 1;
+  --color-hover: 0, 150, 255;
+}
+
+.popup__overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.popup__inner {
+  margin: 70px auto;
+  padding: 60px;
+  background: rgba(var(--color-bg));
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+.popup__form,
+.popup__form .fieldset,
+.popup__form input {
+  width: 100%;
+}
+
+.popup__form h2 {
+  text-align: center;
+  color: #000;
+  font-size: 26px;
+  margin-bottom: 30px;
+}
+.popup__form input {
+  background: var(--color-bg-input);
+  height: 50px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border-radius: 7px;
+  border: none;
+  box-shadow: inset 1px 1px 1px rgba(var(--color-light), 0.4),
+    inset -1px -1px 1px rgba(var(--color-shadow), 0.04),
+    inset 0 0 0 2px rgba(238, 240, 245, 1),
+    inset -2px -2px 2px 2px rgba(var(--color-light), 0.4),
+    inset -4px -4px 4px 2px rgba(var(--color-light), 0.4),
+    -1px -1px 4px 0px rgba(var(--color-light), 0.4),
+    -2px -2px 8px 0px rgba(var(--color-light), 0.4),
+    inset 2px 2px 2px 2px rgba(var(--color-shadow), 0.04),
+    inset 4px 4px 4px 2px rgba(var(--color-shadow), 0.04),
+    1px 1px 4px 0px rgba(var(--color-shadow), 0.04),
+    2px 2px 8px 0px rgba(var(--color-shadow), 0.04);
+}
+.popup__form input:focus {
+  outline: none;
+}
+.popup__form button {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 20px 40px;
+  font-size: 20px;
+  background-color: var(--color-bg);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-shadow: 0 -1px 0 rgba(var(--color-shadow), 0.08),
+    0 1px 0 rgba(var(--color-light), 1);
+  box-shadow: inset 1px 1px 1px rgba(var(--color-light), 1),
+    -2px -2px 2px rgba(var(--color-light), 0.9),
+    -4px -4px 6px rgba(var(--color-light), 0.9),
+    -8px -8px 16px rgba(var(--color-light), 0.9),
+    -12px -12px 24px rgba(var(--color-light), 0.9),
+    inset -1px -1px 1px rgba(var(--color-shadow), 0.06),
+    2px 2px 2px rgba(var(--color-shadow), 0.08),
+    4px 4px 6px rgba(var(--color-shadow), 0.08),
+    8px 8px 16px rgba(var(--color-shadow), 0.08),
+    12px 12px 24px rgba(var(--color-shadow), 0.08);
+  transition: color 0.3s, text-shadow 0.3s, box-shadow 0.6s;
+}
+
+.popup__form button:hover {
+  text-shadow: 0 -1px 0 rgba(var(--color-shadow), 0.08),
+    0 1px 0 rgba(var(--color-light), 1), 0 0 1px rgba(var(--color-light), 0.7),
+    0 0 4px rgba(var(--color-hover), 0.08),
+    0 0 8px rgba(var(--color-hover), 0.08);
+  box-shadow: inset 1px 1px 1px rgba(var(--color-light), 1),
+    -3px -3px 3px rgba(var(--color-light), 1),
+    -5px -5px 6px rgba(var(--color-light), 1),
+    -10px -10px 16px rgba(var(--color-light), 1),
+    -14px -14px 24px rgba(var(--color-light), 1),
+    inset -1px -1px 1px rgba(var(--color-shadow), 0.06),
+    3px 3px 3px rgba(var(--color-shadow), 0.085),
+    5px 5px 6px rgba(var(--color-shadow), 0.085),
+    10px 10px 16px rgba(var(--color-shadow), 0.085),
+    14px 14px 24px rgba(var(--color-shadow), 0.085);
+}
+
+.popup__form button:active {
+  box-shadow: 1px 1px 1px rgba(var(--color-light), 1),
+    inset -2px -2px 2px rgba(var(--color-light), 0.9),
+    inset -3px -3px 4px rgba(var(--color-light), 0.9),
+    inset -6px -6px 12px rgba(var(--color-light), 0.9),
+    inset -8px -8px 16px rgba(var(--color-light), 0.9),
+    -1px -1px 1px rgba(var(--color-shadow), 0.06),
+    inset 2px 2px 2px rgba(var(--color-shadow), 0.08),
+    inset 3px 3px 4px rgba(var(--color-shadow), 0.08),
+    inset 6px 6px 12px rgba(var(--color-shadow), 0.08),
+    inset 8px 8px 16px rgba(var(--color-shadow), 0.08);
+}

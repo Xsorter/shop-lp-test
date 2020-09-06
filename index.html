@@ -9,6 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/popup.css" />
   </head>
   <body>
     <div class="app-container pt-40">
@@ -20,7 +21,7 @@
               <span class="js-qty-total red-info">XXX</span>, на сумму
               <span class="js-price-total red-info">XXX</span> грн</span
             >
-            <button class="btn-check">Оформить заказ</button>
+            <button disabled class="js-check btn-check">Оформить заказ</button>
           </div>
         </div>
         <!-- /.top-cart-info -->
@@ -286,6 +287,22 @@
           </div>
         </div>
       </footer>
+
+      <div hidden class="js-popup popup__overlay">
+        <div class="popup__inner">
+          <form novalidate action="" class="js-form popup__form">
+            <h2>Оформление заказа</h2>
+            <div class="formfield">
+              <input placeholder="Имя" type="text" />
+            </div>
+            <div class="formfield">
+              <input placeholder="E-mail" type="email" />
+            </div>
+            <button type="submit">Отправить</button>
+          </form>
+        </div>
+      </div>
+      <!-- /.popup__overlay -->
     </div>
     <!-- /.app-container -->
     <script src="js/main.js"></script>

@@ -164,6 +164,10 @@ h3 {
   border: 0;
   border-radius: 4px;
 }
+.btn-check[disabled] {
+  background: #8e8e8e;
+  cursor: not-allowed;
+}
 .btn-check:focus {
   outline: none;
 }
